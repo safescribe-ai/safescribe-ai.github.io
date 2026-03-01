@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { CheckCircle } from 'lucide-react';
+
 const logoImage = '/assets/SafeScribe_logo.png';
+
+// Formspree form endpoint – replace mnjbydpp if you create a new form at formspree.io
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mnjbydpp';
 
 export default function GetStarted() {
   useEffect(() => {
@@ -17,11 +21,37 @@ export default function GetStarted() {
     understood: false,
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.fullName && formData.email && formData.understood) {
+    if (!formData.fullName || !formData.email || !formData.understood) return;
+
+    setError(null);
+    setLoading(true);
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          email: formData.email,
+          organization: formData.organization || undefined,
+          role: formData.role || undefined,
+          reason: formData.reason || undefined,
+          understood: formData.understood,
+          _subject: 'SafeScribe waitlist signup',
+        }),
+      });
+
+      if (!res.ok) throw new Error('Submission failed');
       setSubmitted(true);
+    } catch {
+      setError('Something went wrong. Please try again or email us at notes@safescribe.site.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -209,12 +239,19 @@ export default function GetStarted() {
             </label>
           </div>
 
+          {error && (
+            <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-sm">
+              {error}
+            </div>
+          )}
+
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full px-8 py-4 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors font-semibold text-lg"
+            disabled={loading}
+            className="w-full px-8 py-4 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors font-semibold text-lg disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            Join the waitlist
+            {loading ? 'Submitting…' : 'Join the waitlist'}
           </button>
 
           {/* Privacy Notice */}

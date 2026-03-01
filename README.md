@@ -15,6 +15,14 @@ npm run dev
 npm run build
 ```
 
+## Waitlist form (Formspree)
+
+The Get Started page submits to [Formspree](https://formspree.io). To receive submissions:
+
+1. Create a form at https://formspree.io and copy the form ID from the endpoint (e.g. `https://formspree.io/f/xyzabcde` → `xyzabcde`).
+2. **Local:** Copy `.env.example` to `.env` and set `VITE_FORMSPREE_FORM_ID=your_form_id`.
+3. **GitHub Pages:** In the repo go to **Settings → Secrets and variables → Actions**. Under **Variables** add `VITE_FORMSPREE_FORM_ID` with your form ID. The deploy workflow will use it when building.
+
 ## Deploy to GitHub Pages
 
 The site is set up to deploy to **https://safescribe-ai.github.io** via GitHub Actions.
