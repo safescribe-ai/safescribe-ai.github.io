@@ -25,6 +25,8 @@ export default function Home() {
             <a href="#privacy" className="text-gray-600 hover:text-gray-900">Privacy</a>
             <a href="#no-subscription" className="text-gray-600 hover:text-gray-900">No subscription</a>
             <a href="#how-it-works" className="text-gray-600 hover:text-gray-900">How it works</a>
+            <Link to="/accessibility" className="text-gray-600 hover:text-gray-900">Accessibility</Link>
+            <Link to="/get-started" className="text-gray-600 hover:text-gray-900">Get SafeScribe</Link>
           </nav>
         </div>
       </header>
@@ -277,6 +279,16 @@ export default function Home() {
             <div>
               <h3 className="font-bold text-gray-900 mb-4">Links</h3>
               <ul className="space-y-2">
+                <li>
+                  <Link to="/accessibility" className="text-gray-600 hover:text-gray-900">
+                    Accessibility
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/get-started" className="text-gray-600 hover:text-gray-900">
+                    Get SafeScribe
+                  </Link>
+                </li>
                 <li>
                   <a href="https://github.com/syedhadi816/SafeScribe" className="text-gray-600 hover:text-gray-900">
                     GitHub
