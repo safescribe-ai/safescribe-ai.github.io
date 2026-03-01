@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { CheckCircle } from 'lucide-react';
-const logoImage = '/assets/logo.svg';
+const logoImage = '/assets/SafeScribe_logo.png';
 
 export default function GetStarted() {
   useEffect(() => {

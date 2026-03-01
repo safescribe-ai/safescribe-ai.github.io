@@ -1,9 +1,9 @@
 import { Shield, DollarSign, Mail, Github } from 'lucide-react';
 import { Link } from 'react-router';
 import { useEffect } from 'react';
-const logoImage = '/assets/logo.svg';
-const deviceImage = 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1080&q=80';
-const subscriptionImage = 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1080&q=80';
+const logoImage = '/assets/SafeScribe_logo.png';
+const heroImage = '/assets/SafeScribe_Home.png';
+const subscriptionImage = '/assets/SafeScribe_No_Subscription.png';
 
 export default function Home() {
   useEffect(() => {
@@ -59,7 +59,7 @@ export default function Home() {
           </div>
           <div className="relative">
             <img 
-              src={deviceImage}
+              src={heroImage}
               alt="Device on desk"
               className="rounded-lg shadow-xl"
             />
