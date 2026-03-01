@@ -1,0 +1,53 @@
+syedhadi@Syeds-MacBook-Air SafeScribe_web % npm run deploy
+
+> safescribe-website@0.0.0 predeploy
+> npm run build
+
+
+> safescribe-website@0.0.0 build
+> tsc -b && vite build
+
+sh: tsc: command not found
+syedhadi@Syeds-MacBook-Air SafeScribe_web % npm install --save-dev typescript @types/react
+
+added 1 package, and audited 331 packages in 797ms
+
+42 packages are looking for funding
+  run `npm fund` for details
+
+1 moderate severity vulnerability
+
+To address all issues, run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+syedhadi@Syeds-MacBook-Air SafeScribe_web % @types/react-dom
+zsh: no such file or directory: @types/react-dom
+syedhadi@Syeds-MacBook-Air SafeScribe_web % npm install
+
+up to date, audited 331 packages in 358ms
+
+42 packages are looking for funding
+  run `npm fund` for details
+
+1 moderate severity vulnerability
+
+To address all issues, run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+syedhadi@Syeds-MacBook-Air SafeScribe_web % npm run deploy
+
+> safescribe-website@0.0.0 predeploy
+> npm run build
+
+
+> safescribe-website@0.0.0 build
+> tsc -b && vite build
+
+error TS5083: Cannot read file '/Users/syedhadi/Desktop/SafeScribe_web/tsconfig.json'.
+
+
+Found 1 error.
+
+syedhadi@Syeds-MacBook-Air SafeScribe_web % 
