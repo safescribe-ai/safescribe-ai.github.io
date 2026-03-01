@@ -24,4 +24,3 @@ The site is set up to deploy to **https://safescribe-ai.github.io** via GitHub A
 3. Push to the `main` branch (or run the “Deploy to GitHub Pages” workflow manually). The workflow builds the app and deploys the `dist` folder to GitHub Pages.
 
 SPA routing is supported: `404.html` is a copy of `index.html` so routes like `/get-started` work on refresh.
-  
