@@ -44,7 +44,7 @@ export default function Demo() {
 
         <div className="prose prose-lg text-gray-600 mb-10">
           <p>
-            See how SafeScribe works in a real meeting: tap to record, then get a structured summary and action items — all processed on the device. The video below shows the device in use during an example meeting. Underneath, you can read the kind of notes SafeScribe generates, without downloading anything.
+            See how SafeScribe works in a real meeting: tap to record, then get a structured summary and action items — all processed on the device. The video below shows the device in use during an example meeting. Below, you can read the notes generated from this sample meeting!
           </p>
         </div>
 
@@ -62,10 +62,7 @@ export default function Demo() {
         </section>
 
         <section>
-          <h2 className="text-xl font-bold text-gray-900 mb-4">Generated notes (example)</h2>
-          <p className="text-gray-600 mb-4 text-sm">
-            This is the type of summary SafeScribe produces and emails to you. View it below — no download required.
-          </p>
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Generated notes</h2>
           <div className="rounded-lg border border-gray-200 overflow-hidden shadow-inner bg-gray-50">
             <iframe
               src={`${demoNotesPdf}#view=FitH`}
@@ -81,12 +78,6 @@ export default function Demo() {
             className="inline-flex items-center px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
           >
             Join the waitlist
-          </Link>
-          <Link
-            to="/#how-it-works"
-            className="inline-flex items-center px-6 py-3 border-2 border-gray-900 text-gray-900 rounded-lg hover:bg-gray-50 transition-colors"
-          >
-            How it works
           </Link>
         </div>
       </main>
