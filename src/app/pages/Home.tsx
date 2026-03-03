@@ -1,11 +1,14 @@
 import { Shield, DollarSign, Mail, Github } from 'lucide-react';
 import { Link } from 'react-router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 const logoImage = '/assets/SafeScribe_logo.png';
 const heroImage = '/assets/SafeScribe_Home.png';
 const subscriptionImage = '/assets/SafeScribe_No_Subscription.png';
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   useEffect(() => {
     document.title = 'SafeScribe - Private Meeting Notes Without Subscriptions';
   }, []);
@@ -28,7 +31,47 @@ export default function Home() {
             <Link to="/accessibility" className="text-gray-600 hover:text-gray-900">Accessibility</Link>
             <Link to="/get-started" className="text-gray-600 hover:text-gray-900">Get SafeScribe</Link>
           </nav>
+          {/* Mobile menu button */}
+          <button
+            type="button"
+            className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+            onClick={() => setMobileMenuOpen((o) => !o)}
+            aria-expanded={mobileMenuOpen}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
         </div>
+        {/* Mobile menu panel */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-gray-200 bg-white px-4 py-4">
+            <ul className="space-y-1">
+              <li>
+                <a href="#how-it-works" className="block py-3 text-gray-600 hover:text-gray-900" onClick={() => setMobileMenuOpen(false)}>
+                  How It Works
+                </a>
+              </li>
+              <li>
+                <Link to="/accessibility" className="block py-3 text-gray-600 hover:text-gray-900" onClick={() => setMobileMenuOpen(false)}>
+                  Accessibility
+                </Link>
+              </li>
+              <li>
+                <Link to="/get-started" className="block py-3 text-gray-600 hover:text-gray-900 font-medium" onClick={() => setMobileMenuOpen(false)}>
+                  Get SafeScribe
+                </Link>
+              </li>
+            </ul>
+          </div>
+        )}
       </header>
 
       {/* Hero Section */}
@@ -242,6 +285,35 @@ export default function Home() {
               </p>
             </div>
           </div>
+          <div className="text-center mt-10">
+            <Link
+              to="/demo"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
+                <path d="M8 5v14l11-7L8 5z" />
+              </svg>
+              Watch Demo
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* SafeScribe as Assistive Technology */}
+      <section className="py-16 md:py-24 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            SafeScribe as Assistive Technology
+          </h2>
+          <p className="text-lg text-gray-600 mb-6">
+            For people with ADHD, auditory processing differences, hearing loss, dyslexia, and other cognitive or neurological conditions, standard meetings can be a barrier. SafeScribe captures and structures everything that happens — so everyone can stay informed and contribute without the extra burden of note-taking.
+          </p>
+          <Link
+            to="/accessibility"
+            className="inline-flex items-center px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors"
+          >
+            Learn about accessibility
+          </Link>
         </div>
       </section>
 

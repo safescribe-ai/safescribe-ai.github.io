@@ -2,12 +2,26 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { CheckCircle } from 'lucide-react';
 
+function MobileNav({ onClose }: { onClose: () => void }) {
+  return (
+    <div className="md:hidden border-t border-gray-200 bg-white px-4 py-4">
+      <ul className="space-y-1">
+        <li><a href="/#how-it-works" className="block py-3 text-gray-600 hover:text-gray-900" onClick={onClose}>How It Works</a></li>
+        <li><Link to="/accessibility" className="block py-3 text-gray-600 hover:text-gray-900" onClick={onClose}>Accessibility</Link></li>
+        <li><Link to="/get-started" className="block py-3 text-gray-900 font-medium" onClick={onClose}>Get SafeScribe</Link></li>
+      </ul>
+    </div>
+  );
+}
+
 const logoImage = '/assets/SafeScribe_logo.png';
 
 // Formspree form endpoint – replace mnjbydpp if you create a new form at formspree.io
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mnjbydpp';
 
 export default function GetStarted() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   useEffect(() => {
     document.title = 'Get Started - SafeScribe Testing Program';
   }, []);
@@ -67,15 +81,14 @@ export default function GetStarted() {
   if (submitted) {
     return (
       <div className="min-h-screen bg-white">
-        {/* Header */}
         <header className="border-b border-gray-200">
           <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Link to="/">
-                <img src={logoImage} alt="SafeScribe" className="h-10 w-auto" />
-              </Link>
-            </div>
+            <Link to="/"><img src={logoImage} alt="SafeScribe" className="h-10 w-auto" /></Link>
+            <button type="button" className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100" onClick={() => setMobileMenuOpen((o) => !o)} aria-label="Toggle menu">
+              {mobileMenuOpen ? <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg> : <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>}
+            </button>
           </div>
+          {mobileMenuOpen && <MobileNav onClose={() => setMobileMenuOpen(false)} />}
         </header>
 
         {/* Success Message */}
@@ -102,15 +115,14 @@ export default function GetStarted() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
       <header className="border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Link to="/">
-              <img src={logoImage} alt="SafeScribe" className="h-10 w-auto" />
-            </Link>
-          </div>
+          <Link to="/"><img src={logoImage} alt="SafeScribe" className="h-10 w-auto" /></Link>
+          <button type="button" className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100" onClick={() => setMobileMenuOpen((o) => !o)} aria-label="Toggle menu">
+            {mobileMenuOpen ? <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg> : <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>}
+          </button>
         </div>
+        {mobileMenuOpen && <MobileNav onClose={() => setMobileMenuOpen(false)} />}
       </header>
 
       {/* Main Content */}
