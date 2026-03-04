@@ -268,7 +268,7 @@ export default function GetStarted() {
 
           {/* Privacy Notice */}
           <p className="text-sm text-gray-500 text-center">
-            We'll only use your information to contact you about testing and the waitlist. We won't share your details with third parties or use them for marketing unless you opt in.
+            We'll only use your information to contact you about testing and the waitlist.
           </p>
         </form>
       </div>
