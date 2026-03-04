@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 const logoImage = '/assets/SafeScribe_logo.png';
 const heroImage = '/assets/SafeScribe_Home.png';
 const subscriptionImage = '/assets/SafeScribe_No_Subscription.png';
+const productVideo = '/assets/SafeScribe-Product-Video.mp4';
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -150,6 +151,17 @@ export default function Home() {
                 All transcription and summarization happens on your device. No cloud processing, no subscriptions, no ongoing fees.
               </p>
             </div>
+          </div>
+          <div className="max-w-3xl mx-auto mt-12 rounded-xl overflow-hidden shadow-lg">
+            <video
+              src={productVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full"
+              aria-label="SafeScribe product video – meeting ends, user presses button"
+            />
           </div>
         </div>
       </section>
