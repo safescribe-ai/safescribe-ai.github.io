@@ -141,13 +141,26 @@ export default function GetStarted() {
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
           Join the SafeScribe testing program
         </h1>
-        <div className="text-lg text-gray-600 mb-12 space-y-4">
+        <div className="text-lg text-gray-600 mb-8 space-y-4">
           <p>
             SafeScribe is not yet available to buy. We're looking for people and organizations who want to try the device and give feedback.
           </p>
           <p>
             If you're interested in testing SafeScribe, fill out the form below.
           </p>
+        </div>
+
+        {/* Build yourself – distinct background, compact */}
+        <div className="mb-10 rounded-xl bg-slate-100 border border-slate-200 px-5 py-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <p className="text-sm text-slate-700 font-medium">
+            Brave enough to build it yourself? You can skip the waitlist
+          </p>
+          <Link
+            to="/build"
+            className="shrink-0 inline-flex items-center justify-center px-5 py-2.5 bg-slate-700 text-white text-sm font-semibold rounded-lg hover:bg-slate-800 transition-colors"
+          >
+            Build SafeScribe
+          </Link>
         </div>
 
         {/* Form */}

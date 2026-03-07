@@ -338,15 +338,23 @@ export default function Home() {
           <p className="text-xl text-gray-300 mb-8">
             SafeScribe is open source. You can build it yourself at home.
           </p>
-          <a 
-            href="https://github.com/syedhadi816/SafeScribe" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors text-lg font-semibold"
-          >
-            <Github className="w-6 h-6" />
-            View on GitHub
-          </a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a 
+              href="https://github.com/syedhadi816/SafeScribe" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors text-lg font-semibold"
+            >
+              <Github className="w-6 h-6" />
+              View on GitHub
+            </a>
+            <Link
+              to="/build"
+              className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white/10 transition-colors text-lg font-semibold"
+            >
+              Self-Build Guide
+            </Link>
+          </div>
         </div>
       </section>
 
