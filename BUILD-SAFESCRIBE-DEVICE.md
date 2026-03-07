@@ -147,11 +147,6 @@ sudo reboot
 
 - **Alt+F4** or **Ctrl+W** to close Chromium. To start again: `~/SafeScribe/raspberry-pi/kiosk.sh`
 
-**More help**
-
-- **[raspberry-pi/README.md](https://github.com/safescribe-ai/SafeScribe/blob/main/raspberry-pi/README.md)** – Step-by-step setup and troubleshooting.
-- **[docs/PI-SETUP-GUIDE.md](https://github.com/safescribe-ai/SafeScribe/blob/main/docs/PI-SETUP-GUIDE.md)** – One-command install, email setup, manual install from USB.
-
 ---
 
 ## 8. Summary checklist

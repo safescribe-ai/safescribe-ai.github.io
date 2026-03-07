@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Github } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
@@ -185,6 +185,17 @@ export default function BuildDevice() {
                   >
                     {markdown}
                   </ReactMarkdown>
+                  <div className="flex justify-center mt-10 pt-8 border-t border-gray-100">
+                    <a
+                      href="https://github.com/safescribe-ai/SafeScribe"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors font-semibold"
+                    >
+                      <Github className="w-5 h-5" />
+                      View on GitHub
+                    </a>
+                  </div>
                 </div>
               </article>
             </main>
