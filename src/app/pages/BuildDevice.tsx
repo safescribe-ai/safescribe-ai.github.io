@@ -1,14 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router';
 import { ArrowLeft } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 const logoImage = '/assets/SafeScribe_logo.png';
+
+const SECTION_IDS = [
+  { id: 'intro', label: 'Intro' },
+  { id: 'hardware', label: '1. Hardware list' },
+  { id: 'raspberry-pi-os', label: '2. Raspberry Pi OS' },
+  { id: 'first-boot', label: '3. First boot' },
+  { id: 'install-safescribe', label: '4. Install SafeScribe' },
+  { id: 'post-install', label: '5. Post-install' },
+  { id: 'first-run', label: '6. First run' },
+  { id: 'troubleshooting', label: '7. Troubleshooting' },
+  { id: 'summary', label: '8. Summary' },
+];
 
 export default function BuildDevice() {
   const [markdown, setMarkdown] = useState<string>('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const h2IndexRef = useRef(0);
 
   useEffect(() => {
     document.title = 'Build SafeScribe – Self-Build Guide';
@@ -17,15 +31,18 @@ export default function BuildDevice() {
         if (!res.ok) throw new Error('Could not load guide');
         return res.text();
       })
-      .then(setMarkdown)
+      .then((text) => {
+        h2IndexRef.current = 0;
+        setMarkdown(text);
+      })
       .catch(() => setError('Failed to load the build guide.'))
       .finally(() => setLoading(false));
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
-      <header className="border-b border-gray-200 sticky top-0 z-10 bg-white">
-        <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+    <div className="min-h-screen bg-gray-50">
+      <header className="border-b border-gray-200 sticky top-0 z-20 bg-white shadow-sm">
+        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <Link
             to="/"
             className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 font-medium"
@@ -40,7 +57,7 @@ export default function BuildDevice() {
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-4 py-10 md:py-14">
+      <div className="max-w-6xl mx-auto px-4 py-8 md:py-10">
         {loading && (
           <p className="text-gray-500 text-center py-12">Loading guide…</p>
         )}
@@ -52,22 +69,129 @@ export default function BuildDevice() {
             </Link>
           </div>
         )}
-        {!loading && !error && markdown && (
-          <article className="build-guide [&_h1]:text-3xl [&_h1]:md:text-4xl [&_h1]:font-bold [&_h1]:text-gray-900 [&_h1]:mb-4 [&_h2]:text-xl [&_h2]:md:text-2xl [&_h2]:font-bold [&_h2]:text-gray-900 [&_h2]:mt-10 [&_h2]:mb-4 [&_h3]:text-lg [&_h3]:font-bold [&_h3]:text-gray-900 [&_h3]:mt-6 [&_h3]:mb-2 [&_p]:text-gray-600 [&_p]:leading-relaxed [&_p]:mb-4 [&_a]:text-gray-900 [&_a]:underline [&_a:hover]:no-underline [&_ul]:my-4 [&_li]:text-gray-600 [&_li]:mb-1 [&_code]:bg-gray-100 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm [&_pre]:bg-gray-900 [&_pre]:text-gray-100 [&_pre]:p-4 [&_pre]:rounded-xl [&_pre]:overflow-x-auto [&_pre]:my-4 [&_table]:w-full [&_th]:text-left [&_th]:font-semibold [&_th]:p-2 [&_td]:p-2 [&_td]:border-t [&_td]:border-gray-200 [&_hr]:my-8 [&_hr]:border-gray-200">
-            <ReactMarkdown
-              components={{
-                a: ({ href, children }) => (
-                  <a href={href} target="_blank" rel="noopener noreferrer">
-                    {children}
-                  </a>
-                ),
-              }}
+
+        {!loading && !error && markdown && (() => {
+          h2IndexRef.current = 0;
+          return (
+          <div className="flex flex-col lg:flex-row gap-10">
+            {/* Table of contents – sticky on desktop */}
+            <nav
+              aria-label="Guide sections"
+              className="lg:w-56 shrink-0 lg:sticky lg:top-24 self-start"
             >
-              {markdown}
-            </ReactMarkdown>
-          </article>
-        )}
-      </main>
+              <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+                  On this page
+                </p>
+                <ul className="space-y-1.5 text-sm">
+                  {SECTION_IDS.map(({ id, label }) => (
+                    <li key={id}>
+                      <a
+                        href={`#${id}`}
+                        className="text-gray-600 hover:text-gray-900 hover:underline block py-0.5"
+                      >
+                        {label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </nav>
+
+            {/* Main content */}
+            <main className="flex-1 min-w-0">
+              <article className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                <div className="p-6 md:p-10 build-guide-content">
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      a: ({ href, children }) => (
+                        <a
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-900 underline hover:no-underline"
+                        >
+                          {children}
+                        </a>
+                      ),
+                      h1: ({ children }) => (
+                        <h1 id="intro" className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                          {children}
+                        </h1>
+                      ),
+                      h2: ({ children }) => {
+                        const index = h2IndexRef.current;
+                        const id = SECTION_IDS[index + 1]?.id ?? `section-${index}`;
+                        h2IndexRef.current += 1;
+                        return (
+                          <h2 id={id} className="text-xl md:text-2xl font-bold text-gray-900 mt-10 mb-4 pt-2 border-t border-gray-100 first:border-0 first:mt-0 first:pt-0 scroll-mt-24">
+                            {children}
+                          </h2>
+                        );
+                      },
+                      h3: ({ children }) => (
+                        <h3 className="text-lg font-bold text-gray-900 mt-6 mb-2">
+                          {children}
+                        </h3>
+                      ),
+                      p: ({ children }) => (
+                        <p className="text-gray-600 leading-relaxed mb-4">{children}</p>
+                      ),
+                      ul: ({ children }) => (
+                        <ul className="list-disc pl-6 my-4 space-y-1 text-gray-600">{children}</ul>
+                      ),
+                      ol: ({ children }) => (
+                        <ol className="list-decimal pl-6 my-4 space-y-1 text-gray-600">{children}</ol>
+                      ),
+                      li: ({ children }) => <li className="leading-relaxed">{children}</li>,
+                      table: ({ children }) => (
+                        <div className="overflow-x-auto my-6 rounded-lg border border-gray-200">
+                          <table className="w-full text-sm text-left">{children}</table>
+                        </div>
+                      ),
+                      thead: ({ children }) => (
+                        <thead className="bg-gray-100 text-gray-900 font-semibold">
+                          {children}
+                        </thead>
+                      ),
+                      th: ({ children }) => (
+                        <th className="px-4 py-3 border-b border-gray-200">{children}</th>
+                      ),
+                      td: ({ children }) => (
+                        <td className="px-4 py-3 border-b border-gray-100 text-gray-600">{children}</td>
+                      ),
+                      tbody: ({ children }) => <tbody>{children}</tbody>,
+                      tr: ({ children }) => <tr className="border-b border-gray-100 last:border-0">{children}</tr>,
+                      pre: ({ children }) => (
+                        <pre className="my-4 p-4 rounded-xl bg-gray-900 text-gray-100 overflow-x-auto text-sm font-mono">
+                          {children}
+                        </pre>
+                      ),
+                      code: ({ className, children }) => {
+                        const isBlock = className?.includes('language-');
+                        if (isBlock) {
+                          return <code className="text-gray-100 font-mono text-sm">{children}</code>;
+                        }
+                        return (
+                          <code className="bg-gray-200 text-gray-800 px-1.5 py-0.5 rounded text-sm font-mono">
+                            {children}
+                          </code>
+                        );
+                      },
+                      hr: () => <hr className="my-8 border-gray-200" />,
+                      strong: ({ children }) => <strong className="font-semibold text-gray-900">{children}</strong>,
+                    }}
+                  >
+                    {markdown}
+                  </ReactMarkdown>
+                </div>
+              </article>
+            </main>
+          </div>
+          );
+        })()}
+      </div>
     </div>
   );
 }
