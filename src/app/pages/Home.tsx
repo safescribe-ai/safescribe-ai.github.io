@@ -29,6 +29,7 @@ export default function Home() {
             <a href="#privacy" className="text-gray-600 hover:text-gray-900">Privacy</a>
             <a href="#no-subscription" className="text-gray-600 hover:text-gray-900">No subscription</a>
             <a href="#how-it-works" className="text-gray-600 hover:text-gray-900">How it works</a>
+            <Link to="/downloads" className="text-gray-600 hover:text-gray-900">Downloads</Link>
             <Link to="/accessibility" className="text-gray-600 hover:text-gray-900">Accessibility</Link>
             <Link to="/get-started" className="text-gray-600 hover:text-gray-900">Get SafeScribe</Link>
           </nav>
@@ -59,6 +60,11 @@ export default function Home() {
                 <a href="#how-it-works" className="block py-3 text-gray-600 hover:text-gray-900" onClick={() => setMobileMenuOpen(false)}>
                   How It Works
                 </a>
+              </li>
+              <li>
+                <Link to="/downloads" className="block py-3 text-gray-600 hover:text-gray-900" onClick={() => setMobileMenuOpen(false)}>
+                  Downloads
+                </Link>
               </li>
               <li>
                 <Link to="/accessibility" className="block py-3 text-gray-600 hover:text-gray-900" onClick={() => setMobileMenuOpen(false)}>
@@ -379,6 +385,11 @@ export default function Home() {
                 <li>
                   <Link to="/get-started" className="text-gray-600 hover:text-gray-900">
                     Get SafeScribe
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/downloads" className="text-gray-600 hover:text-gray-900">
+                    Downloads
                   </Link>
                 </li>
                 <li>

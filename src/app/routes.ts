@@ -4,6 +4,7 @@ import GetStarted from "./pages/GetStarted";
 import Accessibility from "./pages/Accessibility";
 import Demo from "./pages/Demo";
 import BuildDevice from "./pages/BuildDevice";
+import Downloads from "./pages/Downloads";
 
 export const router = createBrowserRouter([
   { path: "/", Component: Home },
@@ -11,4 +12,5 @@ export const router = createBrowserRouter([
   { path: "/accessibility", Component: Accessibility },
   { path: "/demo", Component: Demo },
   { path: "/build", Component: BuildDevice },
+  { path: "/downloads", Component: Downloads },
 ]);
