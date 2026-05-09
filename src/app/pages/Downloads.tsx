@@ -76,12 +76,9 @@ export default function Downloads() {
 
       <main className="max-w-4xl mx-auto px-4 py-10">
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 md:p-8">
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
             Public Downloads
           </h1>
-          <p className="text-gray-600 mb-6">
-            Live download counts from the latest SafeScribe GitHub release.
-          </p>
 
           {loading && <p className="text-gray-500">Loading download stats...</p>}
           {error && <p className="text-red-600">{error}</p>}
